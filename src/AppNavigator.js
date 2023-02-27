@@ -18,7 +18,7 @@ const AppNavigator =()=> {
         <Stack.Screen name ="login" component={Login} options={{headerShown:false}}/>
         <Stack.Screen name ="signup" component={Signup} options={{headerShown:false}}/>
         
-        {/* <Stack.Screen name ="home" component={Home} options={{headerShown:false}}/> */}
+        <Stack.Screen name ="home" component={Home} options={{headerShown:false}}/>
         </Stack.Navigator>
       </NavigationContainer>
     )

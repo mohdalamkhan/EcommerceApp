@@ -13,6 +13,7 @@ import {
 import CommonButton from '../component/CommonaButton';
 import CustomTextInput from '../component/CustomTextInput';
 import {ScrollView} from 'react-native-gesture-handler';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Signup = ({navigation}) => {
   const [name, setName] = useState('');
@@ -62,7 +63,23 @@ const Signup = ({navigation}) => {
     } else {
       setBadConfirmPassword(false);
     }
+    saveData();
   };
+
+  const saveData = async () => {
+  if(badName == false &&
+    badEmail == false &&
+    badMobile == false &&
+    badpassword == false &&
+    badConfirmPassword == false
+    ) {
+      await AsyncStorage.setItem('NAME', name);
+      await AsyncStorage.setItem('EMAIL', email);
+      await AsyncStorage.setItems('MOBILE', mobile);
+      await AsyncStorage.setItem('PASSWORD', password);
+      navigation.goBack();
+    }
+  }
 
   return (
     <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>

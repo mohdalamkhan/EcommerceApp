@@ -13,6 +13,7 @@ import {
 import CommonButton from '../component/CommonaButton';
 import CustomTextInput from '../component/CustomTextInput';
 import {ScrollView} from 'react-native-gesture-handler';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -21,6 +22,8 @@ const Login = ({navigation}) => {
   const [badpassword, setBadPassword] = useState(false);
 
   const validate = () => {
+    console.log("hello")
+    
     if (email == '') {
       setBadEmail(true);
     } else {
@@ -32,7 +35,16 @@ const Login = ({navigation}) => {
     } else {
       setBadPassword(false);
     }
+    getData()
+    console.log("validation")
+
   };
+
+  getData = async()=>{
+    const mEmail = await AsyncStorage.getItem('EMAIL');
+    const mPass = await AsyncStorage.getItem('PASSWORD');
+    console.log("getDAta==>",mEmail,mPass)
+  }
 
   return (
     <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
